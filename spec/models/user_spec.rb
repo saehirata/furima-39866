@@ -6,7 +6,6 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
-
     context '新規登録できる場合' do
       it '必要事項を全て過不足なく入力すると登録できる' do
         expect(@user).to be_valid
@@ -19,11 +18,11 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
-    
+
       it 'emailが空では登録できない' do
         @user.email = ''
         @user.valid?
-       expect(@user.errors.full_messages).to include("Email can't be blank")
+        expect(@user.errors.full_messages).to include("Email can't be blank")
       end
 
       it 'emailが重複すると登録できない' do
