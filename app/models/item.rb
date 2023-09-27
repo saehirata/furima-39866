@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   # has_many :comments
-  # has_one :order
+  has_one :order
 
   # 商品画像必須
   validates :image, presence: true
