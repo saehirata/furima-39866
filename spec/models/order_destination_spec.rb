@@ -75,6 +75,12 @@ RSpec.describe OrderDestination, type: :model do
         expect(@order_destination.errors.full_messages).to include("Phone number is too short")
       end
 
+      it '電話番号が12桁以上だと購入できない' do
+        @order_destination.phone_number = '090123456789'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("Phone number is too short")
+      end
+
       it 'user_idが紐づいていなければ購入できない' do
         @order_destination.user_id = ''
         @order_destination.valid?
