@@ -21,7 +21,7 @@ class Item < ApplicationRecord
   validates :info, presence: true
 
   # カテゴリー、商品の状態、配送料の負担、発送元の地域、発送までの日数「---」の時は保存できない
-  with_options numericality: { other_than: 1, message: "can't be blank" } do
+  with_options numericality: { other_than: 1, message: "を入力してください" } do
     validates :category_id
     validates :sales_status_id
     validates :shipping_fee_status_id
@@ -32,11 +32,11 @@ class Item < ApplicationRecord
   # 販売価格必須
   validates :price, presence: true
 
-  # 販売価格（¥300~¥9,999,999）
+  # 販売価格（¥300~¥9,999,999）：is out of setting range
   validates :price,
             numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
-                            message: 'is out of setting range' }
+                            message: 'は¥300〜9,999,999の範囲で設定してください' }
 
-  # 販売価格（半角整数のみ）
-  validates :price, numericality: { only_integer: true, message: 'is invalid. Input half-width characters' }
+  # 販売価格（半角整数のみ）：is invalid. Input half-width characters
+  validates :price, numericality: { only_integer: true, message: 'は半角数字で入力してください' }
 end
